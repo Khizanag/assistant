@@ -15,26 +15,16 @@ import AVFoundation
 struct SpeechRecognitionView: View {
     @StateObject private var viewModel = SpeechRecognitionViewModel()
 
+    // MARK: - Body
     var body: some View {
         VStack(spacing: 24) {
             localePicker
 
-            // MARK: - Transcribed Text
-            Text(viewModel.transcribedText)
-                .padding()
-                .frame(maxWidth: .infinity, minHeight: 200, alignment: .topLeading)
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(12)
+            transcribedText
 
             startStopButton
 
-            // MARK: - Copy Button
-            if !viewModel.transcribedText.isEmpty {
-                Button("Copy Text") {
-                    UIPasteboard.general.string = viewModel.transcribedText
-                }
-                .padding(.top)
-            }
+            copyButton
 
             Spacer()
         }
@@ -46,7 +36,8 @@ struct SpeechRecognitionView: View {
     }
 }
 
-extension SpeechRecognitionView {
+// MARK: - Private
+private extension SpeechRecognitionView {
     var localePicker: some View {
         Picker("Language", selection: $viewModel.selectedLocale) {
             ForEach(viewModel.supportedLocales, id: \.identifier) { locale in
@@ -59,6 +50,14 @@ extension SpeechRecognitionView {
         .disabled(viewModel.isListening)
     }
 
+    var transcribedText: some View {
+        Text(viewModel.transcribedText)
+            .padding()
+            .frame(maxWidth: .infinity, minHeight: 200, alignment: .topLeading)
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(12)
+    }
+
     var startStopButton: some View {
         Button(viewModel.isListening ? "Stop Listening" : "Start Listening") {
             viewModel.isListening ? viewModel.stopListening() : viewModel.startListening()
@@ -69,5 +68,15 @@ extension SpeechRecognitionView {
         .background(viewModel.isListening ? Color.red : Color.blue)
         .foregroundColor(.white)
         .cornerRadius(10)
+    }
+
+    @ViewBuilder
+    var copyButton: some View {
+        if !viewModel.transcribedText.isEmpty {
+            Button("Copy Text") {
+                UIPasteboard.general.string = viewModel.transcribedText
+            }
+            .padding(.top)
+        }
     }
 }
