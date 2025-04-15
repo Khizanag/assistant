@@ -64,10 +64,17 @@ private extension SpeechRecognitionView {
                 viewModel.isListening ? viewModel.stopListening() : viewModel.startListening()
             },
             label: {
-                Text(
-                    viewModel.isListening ? "Stop Listening" : "Start Listening"
+                Label(
+                    title: {
+                        Text(
+                            viewModel.isListening ? "Stop Listening" : "Start Listening"
+                        )
+                        .font(.headline)
+                    },
+                    icon: {
+                        Image(systemName: viewModel.isListening ? "stop.circle.fill" : "mic.circle.fill")
+                    }
                 )
-                .font(.headline)
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(viewModel.isListening ? Color.red : Color.blue)
@@ -80,10 +87,17 @@ private extension SpeechRecognitionView {
     @ViewBuilder
     var copyButton: some View {
         if !viewModel.transcribedText.isEmpty {
-            Button("Copy Text") {
-                UIPasteboard.general.string = viewModel.transcribedText
-            }
-            .padding(.top)
+            Button(
+                action: {
+                    UIPasteboard.general.string = viewModel.transcribedText
+                },
+                label: {
+                    Label(
+                        title: { Text("Copy Text") },
+                        icon: { Image(systemName: "doc.on.doc") }
+                    )
+                }
+            )
         }
     }
 }
