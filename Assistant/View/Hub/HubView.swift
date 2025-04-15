@@ -4,6 +4,7 @@
 //
 //  Created by Giga Khizanishvili on 09.04.25.
 //
+
 import SwiftUI
 
 struct HubView: View {
@@ -13,13 +14,6 @@ struct HubView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-
-//                EditButton()
-//                    .padding(.trailing, 16)
-            }
-
             List {
                 ForEach(viewModel.items) { item in
                     Button(
@@ -48,6 +42,7 @@ struct HubView: View {
                             .padding(.vertical, 8)
                         }
                     )
+                    .disabled(!item.enabled)
                 }
                 .onMove(perform: viewModel.moveItem)
             }

@@ -13,4 +13,5 @@ struct HubItem: Identifiable, Equatable {
     let title: String
     let subtitle: String?
     let destinationPage: Page
+    let enabled: Bool
 }

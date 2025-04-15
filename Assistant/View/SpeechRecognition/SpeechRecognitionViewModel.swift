@@ -8,6 +8,7 @@
 import Foundation
 import AVFoundation
 import Speech
+
 final class SpeechRecognitionViewModel: ObservableObject {
     @Published var transcribedText: String = ""
     @Published var isListening: Bool = false

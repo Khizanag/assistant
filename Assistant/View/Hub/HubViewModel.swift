@@ -15,39 +15,45 @@ final class HubViewModel: ObservableObject {
         let defaultItems = [
             HubItem(
                 id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
-                icon: "star.fill",
-                title: "Favorites",
-                subtitle: "View saved items",
-                destinationPage: .favourites
+                icon: "mic.fill",
+                title: "Speech to Text",
+                subtitle: "Transcribe voice to text",
+                destinationPage: .speechRecognition,
+                enabled: true
             ),
             HubItem(
                 id: UUID(uuidString: "00000000-0000-0000-0000-000000000002")!,
-                icon: "bell.fill",
-                title: "Notifications",
-                subtitle: "Recent alerts",
-                destinationPage: .notifications
+                icon: "star.fill",
+                title: "Favorites",
+                subtitle: "View saved items",
+                destinationPage: .favourites,
+                enabled: false
             ),
             HubItem(
                 id: UUID(uuidString: "00000000-0000-0000-0000-000000000003")!,
-                icon: "gearshape.fill",
-                title: "Settings",
-                subtitle: "Configure app",
-                destinationPage: .settings
+                icon: "bell.fill",
+                title: "Notifications",
+                subtitle: "Recent alerts",
+                destinationPage: .notifications,
+                enabled: false
             ),
             HubItem(
                 id: UUID(uuidString: "00000000-0000-0000-0000-000000000004")!,
                 icon: "person.text.rectangle",
                 title: "Author",
                 subtitle: "Information about the author",
-                destinationPage: .author
+                destinationPage: .author,
+                enabled: true
             ),
             HubItem(
                 id: UUID(uuidString: "00000000-0000-0000-0000-000000000005")!,
-                icon: "mic.fill",
-                title: "Speech to Text",
-                subtitle: "Transcribe voice to text",
-                destinationPage: .speechRecognition
+                icon: "gearshape.fill",
+                title: "Settings",
+                subtitle: "Configure app",
+                destinationPage: .settings,
+                enabled: true
             ),
+
         ]
 
         // Load stored order

@@ -17,7 +17,7 @@ struct SpeechRecognitionView: View {
 
     // MARK: - Body
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 16) {
             localePicker
 
             transcribedText
@@ -59,15 +59,22 @@ private extension SpeechRecognitionView {
     }
 
     var startStopButton: some View {
-        Button(viewModel.isListening ? "Stop Listening" : "Start Listening") {
-            viewModel.isListening ? viewModel.stopListening() : viewModel.startListening()
-        }
-        .font(.headline)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(viewModel.isListening ? Color.red : Color.blue)
-        .foregroundColor(.white)
-        .cornerRadius(10)
+        Button(
+            action: {
+                viewModel.isListening ? viewModel.stopListening() : viewModel.startListening()
+            },
+            label: {
+                Text(
+                    viewModel.isListening ? "Stop Listening" : "Start Listening"
+                )
+                .font(.headline)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(viewModel.isListening ? Color.red : Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(12)
+            }
+        )
     }
 
     @ViewBuilder
