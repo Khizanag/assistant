@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HubView: View {
     @EnvironmentObject private var coordinator: Coordinator
+    @EnvironmentObject private var remoteConfig: AppRemoteConfig
+
     @StateObject private var viewModel = HubViewModel()
     @State private var isEditing = false
 
@@ -49,7 +51,7 @@ struct HubView: View {
             .environment(\.editMode, .constant(isEditing ? .active : .inactive))
             .animation(.default, value: isEditing)
         }
-        .navigationTitle("Hub")
+        .navigationTitle(remoteConfig.hubTitle)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(isEditing ? "Done" : "Edit") {

@@ -10,8 +10,10 @@ import SwiftUI
 @main
 struct AssistantApp: App {
 
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var coordinator = Coordinator()
-
+    @StateObject private var remoteConfig = AppRemoteConfig()
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -22,9 +24,16 @@ struct AssistantApp: App {
                         }
                 }
                 .environmentObject(coordinator)
+                .environmentObject(remoteConfig)
 
                 WatermarkView()
             }
+            .onAppear {
+                DispatchQueue.main.async {
+                    remoteConfig.fetch()
+                }
+            }
         }
+
     }
 }

@@ -8,9 +8,6 @@
 import SwiftUI
 import Speech
 import AVFoundation
-import SwiftUI
-import Speech
-import AVFoundation
 
 struct SpeechRecognitionView: View {
     @StateObject private var viewModel = SpeechRecognitionViewModel()
