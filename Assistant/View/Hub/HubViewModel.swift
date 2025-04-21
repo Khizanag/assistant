@@ -4,6 +4,7 @@
 //
 //  Created by Giga Khizanishvili on 09.04.25.
 //
+
 import Foundation
 
 final class HubViewModel: ObservableObject {
@@ -11,10 +12,10 @@ final class HubViewModel: ObservableObject {
 
     private let storageKey = "hub_items_order"
 
+    // MARK: - Init
     init() {
         let defaultItems = [
             HubItem(
-                id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
                 icon: "mic.fill",
                 title: "Speech to Text",
                 subtitle: "Transcribe voice to text",
@@ -22,7 +23,6 @@ final class HubViewModel: ObservableObject {
                 enabled: true
             ),
             HubItem(
-                id: UUID(uuidString: "00000000-0000-0000-0000-000000000002")!,
                 icon: "star.fill",
                 title: "Favorites",
                 subtitle: "View saved items",
@@ -30,7 +30,6 @@ final class HubViewModel: ObservableObject {
                 enabled: false
             ),
             HubItem(
-                id: UUID(uuidString: "00000000-0000-0000-0000-000000000003")!,
                 icon: "bell.fill",
                 title: "Notifications",
                 subtitle: "Recent alerts",
@@ -38,7 +37,6 @@ final class HubViewModel: ObservableObject {
                 enabled: false
             ),
             HubItem(
-                id: UUID(uuidString: "00000000-0000-0000-0000-000000000004")!,
                 icon: "person.text.rectangle",
                 title: "Author",
                 subtitle: "Information about the author",
@@ -46,7 +44,6 @@ final class HubViewModel: ObservableObject {
                 enabled: true
             ),
             HubItem(
-                id: UUID(uuidString: "00000000-0000-0000-0000-000000000005")!,
                 icon: "gearshape.fill",
                 title: "Settings",
                 subtitle: "Configure app",
@@ -54,7 +51,6 @@ final class HubViewModel: ObservableObject {
                 enabled: true
             ),
             HubItem(
-                id: UUID(uuidString: "00000000-0000-0000-0000-000000000006")!,
                 icon: "checklist",
                 title: "Reminders",
                 subtitle: "View and manage your personal reminders",
@@ -67,8 +63,7 @@ final class HubViewModel: ObservableObject {
         if let storedOrder = UserDefaults.standard.array(forKey: storageKey) as? [String] {
             var orderedItems: [HubItem] = []
             for idString in storedOrder {
-                if let uuid = UUID(uuidString: idString),
-                   let item = defaultItems.first(where: { $0.id == uuid }) {
+                if let item = defaultItems.first(where: { $0.id == idString }) {
                     orderedItems.append(item)
                 }
             }
@@ -89,7 +84,9 @@ final class HubViewModel: ObservableObject {
     }
 
     private func persistOrder() {
-        let idStrings = items.map { $0.id.uuidString }
-        UserDefaults.standard.set(idStrings, forKey: storageKey)
+        UserDefaults.standard.set(
+            items.map(\.id),
+            forKey: storageKey
+        )
     }
 }

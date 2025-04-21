@@ -8,7 +8,9 @@
 import Foundation
 
 struct HubItem: Identifiable, Equatable {
-    let id: UUID
+    var id: String {
+        icon + "$" + title + "$" + (subtitle ?? "")
+    }
     let icon: String
     let title: String
     let subtitle: String?
