@@ -11,4 +11,5 @@ enum Page: Hashable {
     case notifications
     case settings
     case speechRecognition
+    case reminders
 }

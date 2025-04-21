@@ -53,7 +53,14 @@ final class HubViewModel: ObservableObject {
                 destinationPage: .settings,
                 enabled: true
             ),
-
+            HubItem(
+                id: UUID(uuidString: "00000000-0000-0000-0000-000000000006")!,
+                icon: "checklist",
+                title: "Reminders",
+                subtitle: "View and manage your personal reminders",
+                destinationPage: .reminders,
+                enabled: true
+            ),
         ]
 
         // Load stored order

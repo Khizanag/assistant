@@ -33,6 +33,15 @@ final class Coordinator: ObservableObject {
             SettingsView()
         case .speechRecognition:
             SpeechRecognitionView()
+        case .reminders:
+            Text("Reminders")
+                .onAppear {
+                    if let url = URL(string: "x-apple-reminderkit://") {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                }
         }
     }
 }

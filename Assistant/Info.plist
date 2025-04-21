@@ -12,5 +12,10 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>x-apple-reminderkit</string>
+    </array>
 </dict>
 </plist>
