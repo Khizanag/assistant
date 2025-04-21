@@ -10,6 +10,10 @@ import SwiftUI
 final class Coordinator: ObservableObject {
     @Published var path = NavigationPath()
 
+    init() {
+        push(.clipboard)
+    }
+
     func push(_ page: Page) {
         path.append(page)
     }
@@ -42,6 +46,10 @@ final class Coordinator: ObservableObject {
                         }
                     }
                 }
+        case .login:
+            LoginView()
+        case .clipboard:
+            ClipboardView()
         }
     }
 }

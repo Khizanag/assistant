@@ -9,6 +9,7 @@ import Firebase
 import FirebaseRemoteConfig
 import FirebaseCore
 
+#if os(iOS) || targetEnvironment(macCatalyst)
 final class AppDelegate: NSObject, UIApplicationDelegate {
     func application(
         _ application: UIApplication,
@@ -18,3 +19,4 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 }
+#endif

@@ -31,11 +31,13 @@ struct ExperienceItemView: View {
         .contextMenu {
             Button(
                 action: {
-                    UIPasteboard.general.string = """
+                    copyToClipboard(
+                                    """
                                     Role: \(experience.role)
                                     Company: \(experience.company)
                                     Years: \(experience.years)
                                     """
+                    )
                 },
                 label: {
                     Text("Copy Experience")

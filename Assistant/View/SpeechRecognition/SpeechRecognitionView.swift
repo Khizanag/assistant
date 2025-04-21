@@ -86,7 +86,7 @@ private extension SpeechRecognitionView {
         if !viewModel.transcribedText.isEmpty {
             Button(
                 action: {
-                    UIPasteboard.general.string = viewModel.transcribedText
+                    copyToClipboard(viewModel.transcribedText)
                 },
                 label: {
                     Label(

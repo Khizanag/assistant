@@ -48,7 +48,9 @@ struct HubView: View {
                 }
                 .onMove(perform: viewModel.moveItem)
             }
+#if os(iOS) || targetEnvironment(macCatalyst)
             .environment(\.editMode, .constant(isEditing ? .active : .inactive))
+#endif
             .animation(.default, value: isEditing)
         }
         .navigationTitle(remoteConfig.hubTitle)

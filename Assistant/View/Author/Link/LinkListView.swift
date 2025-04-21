@@ -30,11 +30,11 @@ struct LinkListView: View {
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal)
-                    .background(Color(.systemGray6))
+                    .background(Color.gray)
                     .cornerRadius(10)
                 }
                 .contextMenu {
-                    Button(action: { UIPasteboard.general.string = "\(linkModel.url)" }) {
+                    Button(action: { copyToClipboard("\(linkModel.url)") }) {
                         Text("Copy Link")
                         Image(systemName: "doc.on.doc")
                     }

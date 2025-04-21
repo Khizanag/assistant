@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct AssistantApp: App {
 
+#if os(iOS) || targetEnvironment(macCatalyst)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+#endif
     @StateObject private var coordinator = Coordinator()
     @StateObject private var remoteConfig = AppRemoteConfig()
-    
+
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -33,6 +35,7 @@ struct AssistantApp: App {
                     remoteConfig.fetch()
                 }
             }
+            .modelContainer(for: ClipboardItem.self, inMemory: false)
         }
     }
 }

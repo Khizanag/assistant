@@ -99,3 +99,14 @@ private extension SettingsView {
         }
     }
 }
+
+
+func copyToClipboard(_ text: String) {
+#if canImport(UIKit)
+    UIPasteboard.general.string = text
+#elseif canImport(AppKit)
+    let pasteboard = NSPasteboard.general
+    pasteboard.clearContents()
+    pasteboard.setString(text, forType: .string)
+#endif
+}

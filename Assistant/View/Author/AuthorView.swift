@@ -162,7 +162,7 @@ private extension AuthorView {
                 .font(.body)
                 .foregroundColor(.blue)
                 .contextMenu {
-                    Button(action: { UIPasteboard.general.string = Constant.email }) {
+                    Button(action: { copyToClipboard(Constant.email) }) {
                         Text("Copy Email")
                         Image(systemName: "doc.on.doc")
                     }
