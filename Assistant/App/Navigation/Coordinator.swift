@@ -10,11 +10,6 @@ import SwiftUI
 final class Coordinator: ObservableObject {
     @Published var path = NavigationPath()
 
-    init() {
-//        push(.author)
-    }
-
-    // MARK: - Navigation Control
     func push(_ page: Page) {
         path.append(page)
     }
