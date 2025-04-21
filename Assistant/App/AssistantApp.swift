@@ -34,6 +34,5 @@ struct AssistantApp: App {
                 }
             }
         }
-
     }
 }
