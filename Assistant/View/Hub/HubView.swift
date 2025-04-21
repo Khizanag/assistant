@@ -53,11 +53,34 @@ struct HubView: View {
         }
         .navigationTitle(remoteConfig.hubTitle)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(placement: .primaryAction) {
                 Button(isEditing ? "Done" : "Edit") {
                     isEditing.toggle()
                 }
             }
+            ToolbarItem(placement: .secondaryAction) {
+                resetOrderButton
+            }
         }
+    }
+}
+
+// MARK: - Private
+private extension HubView {
+    var resetOrderButton: some View {
+        Button(
+            action: {
+                withAnimation {
+                    viewModel.resetOrder()
+                    isEditing = false
+                }
+            },
+            label: {
+                Label(
+                    title: { Text("Reset Order") },
+                    icon: { Image(systemName: "arrow.counterclockwise") }
+                )
+            }
+        )
     }
 }
